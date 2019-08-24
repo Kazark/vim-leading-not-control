@@ -11,6 +11,16 @@ function leading#not_controlling_character(character)
     execute "nmap " . g:leading_key . a:character . " <C-" . a:character . ">"
 endfunction
 
+function leading#not_controlling_suffixed(character, suffix)
+    execute "nmap " . g:leading_key . a:character . a:suffix . " <C-" . a:character . ">" . a:suffix
+endfunction
+
+function leading#not_controlling_suffixed_list(character, list)
+    for suffix in a:list
+        call leading#not_controlling_suffixed(a:character, suffix)
+    endfor
+endfunction
+
 function leading#not_controlling_list(list)
     for character in a:list
         call leading#not_controlling_character(character)
